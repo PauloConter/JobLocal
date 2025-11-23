@@ -1,0 +1,203 @@
+﻿@{
+    ViewData["Title"] = "Vagas Disponíveis";
+}
+
+<div class="container mt-3">
+    <div class="row">
+        <!-- Sidebar com Filtros -->
+        <div class="col-12 col-md-3 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-filter"></i> Filtros</h5>
+                </div>
+                <div class="card-body">
+                    <form method="get" id="filterForm">
+                        <div class="mb-3">
+                            <label for="cidade" class="form-label">Cidade</label>
+                            <input type="text" class="form-control" id="cidade" name="cidade"
+                                   value="@ViewBag.CidadeFiltro" placeholder="Ex: São Paulo">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tipoServico" class="form-label">Tipo de Serviço</label>
+                            <select class="form-select" id="tipoServico" name="tipoServico">
+                                <option value="">Todos os serviços</option>
+                                <option value="Limpeza">Limpeza</option>
+                                <option value="Jardinagem">Jardinagem</option>
+                                <option value="Pintura">Pintura</option>
+                                <option value="Babá">Babá</option>
+                                <option value="Cuidador de Idosos">Cuidador de Idosos</option>
+                                <option value="Encanador">Encanador</option>
+                                <option value="Eletricista">Eletricista</option>
+                                <option value="Marceneiro">Marceneiro</option>
+                                <option value="Pedreiro">Pedreiro</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i> Aplicar Filtros
+                            </button>
+                            <a href="@Url.Action("Vagas")" class="btn btn-outline-secondary">
+                                <i class="fas fa-times"></i> Limpar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de Vagas -->
+        <div class="col-12 col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0"><i class="fas fa-briefcase"></i> Vagas Disponíveis</h4>
+                <span class="badge bg-primary">@ViewBag.Vagas.Count vaga(s) encontrada(s)</span>
+            </div>
+
+            @if (ViewBag.Vagas.Count == 0)
+            {
+                <div class="alert alert-info text-center">
+                    <i class="fas fa-info-circle fa-2x mb-3"></i>
+                    <h5>Nenhuma vaga encontrada</h5>
+                    <p class="mb-0">Tente ajustar os filtros de busca.</p>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    @foreach (var vaga in ViewBag.Vagas)
+                    {
+                        <div class="col-12 col-lg-6 mb-3">
+                            <div class="card h-100 vaga-card">
+                                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0 text-primary">@vaga.Titulo</h6>
+                                    <span class="badge bg-primary">@vaga.TipoServico</span>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text text-muted small">@vaga.Descricao</p>
+
+                                    <div class="vaga-details">
+                                        <div class="detail-item">
+                                            <i class="fas fa-map-marker-alt text-primary"></i>
+                                            <small><strong>Cidade:</strong> @vaga.Cidade</small>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-money-bill-wave text-success"></i>
+                                            <small><strong>Valor:</strong> R$ @vaga.Valor.ToString("N2")</small>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-calendar text-info"></i>
+                                            <small><strong>Publicada em:</strong> @vaga.DataPublicacao.ToString("dd/MM/yyyy")</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white border-0 pt-0">
+                                    @if (Context.Session.GetInt32("UsuarioId") == null)
+                                    {
+                                        <div class="alert alert-warning py-2 mb-2">
+                                            <small class="d-block text-center">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                Faça login para se candidatar
+                                            </small>
+                                        </div>
+                                        <a href="@Url.Action("Login", "Account")" class="btn btn-outline-primary w-100 btn-sm">
+                                            <i class="fas fa-sign-in-alt"></i> Fazer Login
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-grid gap-2">
+                                            <a href="@Url.Action("DetalhesVaga", new { id = vaga.Id })"
+                                               class="btn btn-primary btn-sm">
+                                                <i class="fas fa-paper-plane"></i> Candidatar-se
+                                            </a>
+                                            <a href="@Url.Action("DetalhesVaga", new { id = vaga.Id })"
+                                               class="btn btn-outline-secondary btn-sm">
+                                                <i class="fas fa-info-circle"></i> Ver Detalhes
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .vaga-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .vaga-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+    .vaga-details .detail-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+        .vaga-details .detail-item i {
+            width: 16px;
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
+
+        .vaga-details .detail-item small {
+            font-size: 0.85rem;
+        }
+
+    .card-text {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: #666;
+    }
+
+    .card-header h6 {
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    /* Responsividade */
+    @@media (max-width: 768px) {
+        .container {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .col-md-3 {
+            margin-bottom: 1rem;
+        }
+
+        .vaga-card {
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Preselect do filtro de tipo de serviço
+        var servicoFiltro = '@ViewBag.ServicoFiltro';
+        if (servicoFiltro) {
+            document.getElementById('tipoServico').value = servicoFiltro;
+        }
+
+        // Adicionar loading state
+        var form = document.getElementById('filterForm');
+        var submitBtn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function() {
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Aplicando...';
+            submitBtn.disabled = true;
+        });
+    });
+</script>

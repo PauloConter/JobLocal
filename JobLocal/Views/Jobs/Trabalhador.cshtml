@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Perfil do Trabalhador - JobLocal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Método helper para estrelas
+    string GerarEstrelas(int nota)
+    {
+        var estrelas = "";
+        for (int i = 0; i < 5; i++)
+        {
+            estrelas += i < nota ? "★" : "☆";
+        }
+        return estrelas;
+    }
+
+    // Variáveis seguras
+    var avaliacoes = ViewBag.Avaliacoes ?? new List<JobLocal.Models.Avaliacao>();
+    var trabalhadorId = ViewBag.TrabalhadorId ?? 0;
+}
+
+<div class="container">
+    <div class="trabalhador-profile">
+        <!-- ... resto do código permanece igual ... -->
+
+        <div class="avaliacoes">
+            <h2>Avaliações</h2>
+
+            @if (avaliacoes.Count > 0)
+            {
+                foreach (var avaliacao in avaliacoes)
+                {
+                    <div class="avaliacao">
+                        <div class="avaliacao-header">
+                            <span class="avaliador">Usuário @avaliacao.AvaliadorId</span>
+                            <span class="data">@avaliacao.DataAvaliacao.ToString("dd/MM/yyyy")</span>
+                            <span class="nota">@Html.Raw(GerarEstrelas(avaliacao.Nota))</span>
+                        </div>
+                        <p class="comentario">@avaliacao.Comentario</p>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Este trabalhador ainda não possui avaliações.</p>
+            }
+        </div>
+
+        <div class="avaliar-form">
+            <h3>Avaliar Trabalhador</h3>
+            <form method="post" action="@Url.Action("Avaliar", "Jobs")">
+                <input type="hidden" name="trabalhadorId" value="@trabalhadorId">
+
+                <!-- ... resto do formulário ... -->
+            </form>
+        </div>
+    </div>
+</div>

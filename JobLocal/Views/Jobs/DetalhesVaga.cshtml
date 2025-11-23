@@ -1,0 +1,141 @@
+﻿@model JobLocal.Models.Vaga
+@{
+    ViewData["Title"] = "Detalhes da Vaga";
+
+    // Verificar se o model é nulo
+    if (Model == null)
+    {
+        <div class="container mt-4">
+            <div class="alert alert-danger">
+                <h4><i class="fas fa-exclamation-triangle"></i> Erro</h4>
+                <p>Vaga não encontrada ou indisponível.</p>
+                <a href="@Url.Action("Vagas")" class="btn btn-primary">Voltar para Vagas</a>
+            </div>
+        </div>
+        return;
+    }
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Detalhes da Vaga -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">@Model.Titulo</h4>
+                    <span class="badge bg-light text-dark">@Model.TipoServico</span>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong><i class="fas fa-map-marker-alt"></i> Localização:</strong>
+                            <p class="text-muted">@Model.Cidade</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong><i class="fas fa-tag"></i> Tipo de Serviço:</strong>
+                            <p class="text-muted">@Model.TipoServico</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong><i class="fas fa-money-bill-wave"></i> Valor:</strong>
+                            <p class="text-success h5">R$ @Model.Valor.ToString("N2")</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong><i class="fas fa-calendar"></i> Publicada em:</strong>
+                            <p class="text-muted">@Model.DataPublicacao.ToString("dd/MM/yyyy")</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong><i class="fas fa-align-left"></i> Descrição Detalhada:</strong>
+                        <p class="text-muted mt-2">@Model.Descricao</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <!-- Formulário de Candidatura -->
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-paper-plane"></i> Candidatar-se à Vaga</h5>
+                </div>
+                <div class="card-body">
+                    @if (Context.Session.GetInt32("UsuarioId") == null)
+                    {
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Login Necessário</strong>
+                            <p class="mb-0 mt-2">Faça login para se candidatar a esta vaga.</p>
+                        </div>
+                        <a href="@Url.Action("Login", "Account")" class="btn btn-primary w-100">
+                            <i class="fas fa-sign-in-alt"></i> Fazer Login
+                        </a>
+                    }
+                    else
+                    {
+                        <form asp-action="CandidatarVaga" method="post">
+                            <input type="hidden" name="vagaId" value="@Model.Id" />
+
+                            <div class="mb-3">
+                                <label for="mensagemCandidatura" class="form-label">
+                                    <strong>Mensagem para o contratante:</strong>
+                                </label>
+                                <textarea class="form-control" id="mensagemCandidatura" name="mensagemCandidatura"
+                                      rows="4" placeholder="Descreva brevemente sua experiência e por que você é a pessoa ideal para este serviço..."
+                                      required></textarea>
+                                <div class="form-text">Esta mensagem será enviada junto com sua candidatura.</div>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <small>
+                                    <i class="fas fa-info-circle"></i>
+                                    <strong>Como funciona:</strong><br>
+                                    1. Envie sua candidatura<br>
+                                    2. O contratante receberá sua mensagem<br>
+                                    3. Ele entrará em contato diretamente<br>
+                                    4. Acompanhe no menu "Minhas Candidaturas"
+                                </small>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 btn-lg">
+                                <i class="fas fa-paper-plane"></i> Enviar Candidatura
+                            </button>
+                        </form>
+                    }
+
+                    <hr>
+
+                    <a href="@Url.Action("Vagas")" class="btn btn-outline-secondary w-100">
+                        <i class="fas fa-arrow-left"></i> Voltar para Vagas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-radius: 10px;
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        border: none;
+        font-weight: 600;
+    }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+</style>

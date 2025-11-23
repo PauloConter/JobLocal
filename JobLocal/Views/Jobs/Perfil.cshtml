@@ -1,0 +1,411 @@
+﻿@{
+    ViewData["Title"] = "Meu Perfil - JobLocal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Método helper para estrelas
+    string GerarEstrelas(int nota)
+    {
+        var estrelas = "";
+        for (int i = 0; i < 5; i++)
+        {
+            estrelas += i < nota ? "★" : "☆";
+        }
+        return estrelas;
+    }
+
+    // Variáveis seguras
+    var totalAvaliacoes = ViewBag.TotalAvaliacoes != null ? (int)ViewBag.TotalAvaliacoes : 0;
+    var notaMedia = ViewBag.MediaNotas != null ? (double)ViewBag.MediaNotas : 0.0;
+    var avaliacoes = ViewBag.Avaliacoes ?? new List<JobLocal.Models.Avaliacao>();
+    var notaMediaInt = (int)Math.Round(notaMedia);
+}
+
+<div class="container">
+    <div class="profile-layout">
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+            <div class="user-card">
+                <img src="/images/default-avatar.png" alt="Foto do Usuário" class="user-avatar">
+                <h2>@Context.Session.GetString("UsuarioNome")</h2>
+                <p class="user-email">usuário@exemplo.com</p>
+
+                <div class="user-stats">
+                    <div class="stat">
+                        <span class="stat-number">@totalAvaliacoes</span>
+                        <span class="stat-label">Avaliações</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">@notaMedia.ToString("N1")</span>
+                        <span class="stat-label">Nota Média</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="profile-nav">
+                <a href="@Url.Action("Perfil", "Jobs")" class="nav-item active">📊 Meu Perfil</a>
+                <a href="@Url.Action("MinhasVagas", "Jobs")" class="nav-item">📋 Minhas Vagas</a>
+                <a href="@Url.Action("MeusServicos", "Jobs")" class="nav-item">🛠️ Meus Serviços</a>
+                <a href="@Url.Action("OferecerServicos", "Jobs")" class="nav-item">➕ Novo Serviço</a>
+            </nav>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <div class="profile-content">
+            <!-- Resumo -->
+            <div class="profile-section">
+                <h2>📊 Resumo do Perfil</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-info">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Vagas Ativas</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Serviços Concluídos</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-info">
+                            <span class="stat-number">@notaMedia.ToString("N1")</span>
+                            <span class="stat-label">Avaliação Média</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-info">
+                            <span class="stat-number">@totalAvaliacoes</span>
+                            <span class="stat-label">Total de Avaliações</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Avaliações -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <h2>⭐ Avaliações Recebidas</h2>
+                    @if (totalAvaliacoes > 0)
+                    {
+                        <span class="rating-badge">
+                            @Html.Raw(GerarEstrelas(notaMediaInt))
+                            (@notaMedia.ToString("N1"))
+                        </span>
+                    }
+                </div>
+
+                @if (avaliacoes.Count > 0)
+                {
+                    <div class="avaliacoes-list">
+                        @foreach (var avaliacao in avaliacoes)
+                        {
+                            <div class="avaliacao-card">
+                                <div class="avaliacao-header">
+                                    <div class="avaliador-info">
+                                        <span class="avaliador-nome">Usuário @avaliacao.AvaliadorId</span>
+                                        <span class="avaliacao-data">@avaliacao.DataAvaliacao.ToString("dd/MM/yyyy")</span>
+                                    </div>
+                                    <div class="avaliacao-nota">
+                                        <span class="estrelas">@Html.Raw(GerarEstrelas(avaliacao.Nota))</span>
+                                        <span class="nota-numero">@avaliacao.Nota/5</span>
+                                    </div>
+                                </div>
+                                <p class="avaliacao-comentario">"@avaliacao.Comentario"</p>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <div class="empty-icon">⭐</div>
+                        <h3>Nenhuma avaliação ainda</h3>
+                        <p>Quando você realizar serviços através da plataforma, aparecerão avaliações aqui.</p>
+                    </div>
+                }
+            </div>
+
+            <!-- Informações Pessoais -->
+            <div class="profile-section">
+                <h2>👤 Informações Pessoais</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Nome Completo:</label>
+                        <span>@Context.Session.GetString("UsuarioNome")</span>
+                    </div>
+                    <div class="info-item">
+                        <label>E-mail:</label>
+                        <span>usuário@exemplo.com</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Telefone:</label>
+                        <span>(11) 99999-9999</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Cidade:</label>
+                        <span>São Paulo, SP</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Membro desde:</label>
+                        <span>@DateTime.Now.ToString("MMM yyyy")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .profile-layout {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .profile-sidebar {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 2rem;
+        height: fit-content;
+        position: sticky;
+        top: 100px;
+    }
+
+    .user-card {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .user-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid #007bff;
+        margin-bottom: 1rem;
+    }
+
+    .user-email {
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+
+    .user-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 1rem;
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-number {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+        color: #666;
+    }
+
+    .profile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-item {
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        color: #333;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+        .nav-item:hover, .nav-item.active {
+            background: #007bff;
+            color: white;
+        }
+
+    .profile-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .profile-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .rating-badge {
+        background: #fff3cd;
+        color: #856404;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: bold;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .stat-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #007bff;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+    }
+
+    .avaliacoes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .avaliacao-card {
+        padding: 1.5rem;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        background: #f8f9fa;
+    }
+
+    .avaliacao-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .avaliador-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .avaliador-nome {
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+    }
+
+    .avaliacao-data {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .avaliacao-nota {
+        text-align: right;
+    }
+
+    .estrelas {
+        color: #ffc107;
+        font-size: 1.2rem;
+    }
+
+    .nota-numero {
+        display: block;
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+    }
+
+    .avaliacao-comentario {
+        font-style: italic;
+        color: #333;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+        .info-item label {
+            font-weight: bold;
+            color: #666;
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #666;
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    @@media (max-width: 768px) {
+        .profile-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .profile-sidebar {
+            position: static;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .avaliacao-header {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .avaliacao-nota {
+            text-align: left;
+        }
+
+        .section-header {
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .user-stats {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>

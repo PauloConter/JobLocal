@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Meus Serviços - JobLocal";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-briefcase"></i> Meus Serviços</h2>
+        <a href="@Url.Action("CadastrarServicoPrestador")" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Novo Serviço
+        </a>
+    </div>
+
+    @if (ViewBag.MeusServicos == null || ViewBag.MeusServicos.Count == 0)
+    {
+        <div class="alert alert-info text-center">
+            <i class="fas fa-inbox fa-3x mb-3 text-muted"></i>
+            <h4>Nenhum serviço cadastrado</h4>
+            <p>Você ainda não cadastrou nenhum serviço. Comece agora para aparecer para clientes locais!</p>
+            <a href="@Url.Action("CadastrarServicoPrestador")" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Cadastrar Primeiro Serviço
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var servico in ViewBag.MeusServicos)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">@servico.Titulo</h6>
+                            <span class="badge @(servico.Ativo ? "bg-success" : "bg-secondary")">
+                                @(servico.Ativo ? "Ativo" : "Inativo")
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text small text-muted">@servico.Descricao</p>
+
+                            <div class="servico-info">
+                                <div class="info-item">
+                                    <i class="fas fa-tag"></i>
+                                    <small><strong>Categoria:</strong> @servico.Categoria</small>
+                                </div>
+                                <!-- ⭐⭐ MOSTRAR TIPOSERVICO SE EXISTIR ⭐⭐ -->
+                                @if (!string.IsNullOrEmpty(servico.TipoServico) && servico.TipoServico != servico.Categoria)
+                                {
+                                    <div class="info-item">
+                                        <i class="fas fa-list"></i>
+                                        <small><strong>Tipo:</strong> @servico.TipoServico</small>
+                                    </div>
+                                }
+                                <div class="info-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <small><strong>Cidade:</strong> @servico.Cidade</small>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <small><strong>Valor:</strong> R$ @servico.Valor.ToString("N2")</small>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-phone"></i>
+                                    <small><strong>Telefone:</strong> @servico.Telefone</small>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <small><strong>Cadastrado em:</strong> @servico.DataCadastro.ToString("dd/MM/yyyy")</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="btn-group w-100">
+                                <a href="@Url.Action("EditarServico", new { id = servico.Id })"
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                                <form method="post" action="@Url.Action("ExcluirServico", new { id = servico.Id })"
+                                      onsubmit="return confirm('Tem certeza que deseja excluir este serviço?')" class="d-inline">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Excluir
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

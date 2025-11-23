@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "JobLocal - Serviços Locais";
+}
+
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Encontre os melhores serviços locais</h2>
+            <p>Conectamos trabalhadores e contratantes de forma simples e segura</p>
+            <div class="hero-buttons">
+                <a href="@Url.Action("Vagas", "Jobs")" class="btn-primary">Buscar Serviços</a>
+                <a href="@Url.Action("Register", "Account")" class="btn-secondary">Oferecer Serviços</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <h3>Serviços Disponíveis</h3>
+        <div class="services-grid">
+            <div class="service-card">
+                <h4>Limpeza</h4>
+                <p>Profissionais especializados em limpeza residencial e comercial</p>
+            </div>
+            <div class="service-card">
+                <h4>Jardinagem</h4>
+                <p>Cuidamos do seu jardim com expertise e dedicação</p>
+            </div>
+            <div class="service-card">
+                <h4>Pintura</h4>
+                <p>Pintores qualificados para residências e empresas</p>
+            </div>
+            <div class="service-card">
+                <h4>Babá</h4>
+                <p>Cuidadoras experientes para seus filhos</p>
+            </div>
+            <div class="service-card">
+                <h4>Cuidador de Idosos</h4>
+                <p>Profissionais dedicados ao cuidado de pessoas idosas</p>
+            </div>
+        </div>
+    </section>
+</main>

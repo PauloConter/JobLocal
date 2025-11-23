@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Pagamento - JobLocal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Obter a vaga de forma segura
+    var vaga = ViewBag.Vaga as dynamic;
+}
+
+<div class="container">
+    <h1>Finalizar Contratação</h1>
+
+    <div class="pagamento-container">
+        <div class="resumo-servico">
+            <h2>Resumo do Serviço</h2>
+
+            @if (vaga != null)
+            {
+                <p><strong>Serviço:</strong> @vaga.Titulo</p>
+                <p><strong>Descrição:</strong> @vaga.Descricao</p>
+                <p><strong>Cidade:</strong> @vaga.Cidade</p>
+                <p><strong>Valor:</strong> R$ @vaga.Valor.ToString("N2")</p>
+            }
+            else
+            {
+                <p class="alert error">Vaga não encontrada.</p>
+                <a href="@Url.Action("Vagas", "Jobs")" class="btn-primary">Voltar para Vagas</a>
+                return;
+            }
+        </div>
+
+        <div class="metodos-pagamento">
+            <h2>Método de Pagamento</h2>
+
+            <div class="metodo-opcao">
+                <input type="radio" id="pix" name="metodo" value="pix" checked>
+                <label for="pix">PIX</label>
+            </div>
+
+            <div class="metodo-opcao">
+                <input type="radio" id="dinheiro" name="metodo" value="dinheiro">
+                <label for="dinheiro">Dinheiro</label>
+            </div>
+
+            <div class="metodo-opcao">
+                <input type="radio" id="cartao" name="metodo" value="cartao">
+                <label for="cartao">Cartão de Crédito</label>
+            </div>
+
+            <div id="detalhes-pagamento">
+                <div class="pix-details">
+                    <p><strong>Chave PIX:</strong> joblocal@pagamento.com</p>
+                    <p>Você receberá o QR Code para pagamento após confirmar.</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-primary" onclick="processarPagamento()">Confirmar Pagamento</button>
+    </div>
+</div>
+
+<script>
+    function processarPagamento() {
+        const metodo = document.querySelector('input[name="metodo"]:checked').value;
+        alert(`Pagamento via ${metodo} processado com sucesso!`);
+        window.location.href = '@Url.Action("Index", "Home")';
+    }
+
+    document.querySelectorAll('input[name="metodo"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const detalhes = document.getElementById('detalhes-pagamento');
+            const metodo = this.value;
+
+            if (metodo === 'pix') {
+                detalhes.innerHTML = `
+                    <div class="pix-details">
+                        <p><strong>Chave PIX:</strong> joblocal@pagamento.com</p>
+                        <p>Você receberá o QR Code para pagamento após confirmar.</p>
+                    </div>
+                `;
+            } else if (metodo === 'dinheiro') {
+                detalhes.innerHTML = '<p>Pagamento será realizado diretamente com o prestador do serviço.</p>';
+            } else if (metodo === 'cartao') {
+                detalhes.innerHTML = `
+                    <div class="cartao-form">
+                        <div class="form-group">
+                            <label for="numeroCartao">Número do Cartão</label>
+                            <input type="text" id="numeroCartao" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-group">
+                            <label for="validade">Validade</label>
+                            <input type="text" id="validade" placeholder="MM/AA">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    });
+</script>

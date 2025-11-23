@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JobLocal</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>JobLocal</h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="@Url.Action("Index", "Home")">Home</a>
+                    <a href="@Url.Action("Vagas", "Jobs")">Vagas</a>
+                    <a href="@Url.Action("ComoFunciona", "Home")">Como Funciona</a>
+
+                    @if (Context.Session.GetInt32("UsuarioId") != null)
+                    {
+                        <div class="user-menu">
+                            <!-- BOTÃO OFERECER SERVIÇOS DESTACADO -->
+                            <a href="@Url.Action("OferecerServicos", "Jobs")" class="btn-primary">Oferecer Serviços</a>
+                            <a href="@Url.Action("Perfil", "Jobs")">Meu Perfil</a>
+                            <a href="@Url.Action("MeusServicos", "Jobs")">Meus Serviços</a>
+                            <a href="@Url.Action("Logout", "Account")">Sair</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="guest-menu">
+                            <a href="@Url.Action("Login", "Account")">Entrar</a>
+                            <a href="@Url.Action("Register", "Account")" class="btn-primary">Cadastrar</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 JobLocal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="~/js/script.js"></script>
+</body>
+</html>

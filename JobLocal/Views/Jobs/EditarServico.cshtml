@@ -1,0 +1,97 @@
+﻿@model JobLocal.Models.ServicoPrestador
+
+@{
+    ViewData["Title"] = "Editar Serviço - JobLocal";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-edit"></i> Editar Serviço</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="EditarServico" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Titulo" class="form-label">Título do Serviço *</label>
+                                <input asp-for="Titulo" class="form-control" required>
+                                <span asp-validation-for="Titulo" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Categoria" class="form-label">Categoria *</label>
+                                <select asp-for="Categoria" class="form-select" required>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="Limpeza">Limpeza</option>
+                                    <option value="Jardinagem">Jardinagem</option>
+                                    <option value="Pintura">Pintura</option>
+                                    <option value="Babá">Babá</option>
+                                    <option value="Cuidador de Idosos">Cuidador de Idosos</option>
+                                    <option value="Encanador">Encanador</option>
+                                    <option value="Eletricista">Eletricista</option>
+                                    <option value="Marceneiro">Marceneiro</option>
+                                    <option value="Pedreiro">Pedreiro</option>
+                                    <option value="Montador de Móveis">Montador de Móveis</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                                <span asp-validation-for="Categoria" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TipoServico" class="form-label">Tipo de Serviço (Opcional)</label>
+                            <input asp-for="TipoServico" class="form-control"
+                                   placeholder="Ex: Limpeza Residencial, Jardinagem Comercial">
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Descricao" class="form-label">Descrição do Serviço *</label>
+                            <textarea asp-for="Descricao" class="form-control" rows="4" required></textarea>
+                            <span asp-validation-for="Descricao" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Valor" class="form-label">Valor (R$) *</label>
+                                <input asp-for="Valor" class="form-control" step="0.01" min="0" required>
+                                <span asp-validation-for="Valor" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Cidade" class="form-label">Cidade *</label>
+                                <input asp-for="Cidade" class="form-control" required>
+                                <span asp-validation-for="Cidade" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Telefone" class="form-label">Telefone para Contato *</label>
+                                <input asp-for="Telefone" class="form-control" required>
+                                <span asp-validation-for="Telefone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input asp-for="Ativo" class="form-check-input" />
+                            <label asp-for="Ativo" class="form-check-label">
+                                Deixar serviço visível para clientes
+                            </label>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("MeusServicos")" class="btn btn-outline-secondary me-md-2">
+                                <i class="fas fa-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Atualizar Serviço
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

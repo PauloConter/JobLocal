@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Minhas Candidaturas";
+}
+
+<div class="container mt-4">
+    <h2><i class="fas fa-clipboard-list"></i> Minhas Candidaturas</h2>
+    <p class="text-muted">Acompanhe todas as vagas para as quais você se candidatou</p>
+
+    @if (ViewBag.MinhasCandidaturas == null || ViewBag.MinhasCandidaturas.Count == 0)
+    {
+        <div class="alert alert-info text-center">
+            <i class="fas fa-inbox fa-3x mb-3 text-muted"></i>
+            <h4>Nenhuma candidatura encontrada</h4>
+            <p>Você ainda não se candidatou a nenhuma vaga.</p>
+            <a href="@Url.Action("Vagas")" class="btn btn-primary">
+                <i class="fas fa-search"></i> Buscar Vagas
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var item in ViewBag.MinhasCandidaturas)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">@item.Vaga.Titulo</h5>
+                            <span class="badge bg-warning">@item.Candidatura.Status</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <strong><i class="fas fa-map-marker-alt"></i> Local:</strong>
+                                <span class="text-muted">@item.Vaga.Cidade</span>
+                            </div>
+                            <div class="mb-2">
+                                <strong><i class="fas fa-tag"></i> Serviço:</strong>
+                                <span class="text-muted">@item.Vaga.TipoServico</span>
+                            </div>
+                            <div class="mb-2">
+                                <strong><i class="fas fa-money-bill-wave"></i> Valor:</strong>
+                                <span class="text-success fw-bold">R$ @item.Vaga.Valor.ToString("N2")</span>
+                            </div>
+                            <div class="mb-3">
+                                <strong><i class="fas fa-calendar"></i> Candidatou-se em:</strong>
+                                <span class="text-muted">@item.Candidatura.DataCandidatura.ToString("dd/MM/yyyy HH:mm")</span>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(item.Candidatura.Mensagem))
+                            {
+                                <div class="mb-3">
+                                    <strong><i class="fas fa-envelope"></i> Sua mensagem:</strong>
+                                    <p class="text-muted small mt-1">@item.Candidatura.Mensagem</p>
+                                </div>
+                            }
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="btn-group w-100">
+                                <a href="@Url.Action("DetalhesVaga", new { id = item.Vaga.Id })"
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i> Ver Vaga
+                                </a>
+                                <a href="@Url.Action("EntrarContato", new { vagaId = item.Vaga.Id })"
+                                   class="btn btn-outline-info btn-sm">
+                                    <i class="fas fa-comment"></i> Contatar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

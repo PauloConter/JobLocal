@@ -1,0 +1,108 @@
+﻿@model JobLocal.Models.ServicoPrestador
+
+@{
+    ViewData["Title"] = "Cadastrar Serviço - JobLocal";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-plus-circle"></i> Cadastrar Novo Serviço</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="CadastrarServicoPrestador" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Titulo" class="form-label">Título do Serviço *</label>
+                                <input type="text" class="form-control" id="Titulo" name="Titulo"
+                                       placeholder="Ex: Diarista, Encanador, Eletricista" required>
+                                <small class="form-text text-muted">Um título claro e objetivo</small>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="Categoria" class="form-label">Categoria *</label>
+                                <select class="form-select" id="Categoria" name="Categoria" required>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="Limpeza">Limpeza</option>
+                                    <option value="Jardinagem">Jardinagem</option>
+                                    <option value="Pintura">Pintura</option>
+                                    <option value="Babá">Babá</option>
+                                    <option value="Cuidador de Idosos">Cuidador de Idosos</option>
+                                    <option value="Encanador">Encanador</option>
+                                    <option value="Eletricista">Eletricista</option>
+                                    <option value="Marceneiro">Marceneiro</option>
+                                    <option value="Pedreiro">Pedreiro</option>
+                                    <option value="Montador de Móveis">Montador de Móveis</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- ⭐⭐ CAMPO TIPOSERVICO (OPCIONAL) ⭐⭐ -->
+                        <div class="mb-3">
+                            <label for="TipoServico" class="form-label">Tipo de Serviço (Opcional)</label>
+                            <input type="text" class="form-control" id="TipoServico" name="TipoServico"
+                                   placeholder="Ex: Limpeza Residencial, Jardinagem Comercial">
+                            <small class="form-text text-muted">Especifique o tipo de serviço se necessário</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Descricao" class="form-label">Descrição do Serviço *</label>
+                            <textarea class="form-control" id="Descricao" name="Descricao"
+                                      rows="4" placeholder="Descreva detalhadamente o serviço que você oferece, sua experiência, áreas de atuação..."
+                                      required></textarea>
+                            <small class="form-text text-muted">Seja detalhado para atrair mais clientes</small>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="Valor" class="form-label">Valor (R$) *</label>
+                                <input type="number" class="form-control" id="Valor" name="Valor"
+                                       step="0.01" min="0" placeholder="0,00" required>
+                                <small class="form-text text-muted">Valor por hora ou serviço</small>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="Cidade" class="form-label">Cidade *</label>
+                                <input type="text" class="form-control" id="Cidade" name="Cidade"
+                                       placeholder="Ex: São Paulo, Rio de Janeiro" required>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="Telefone" class="form-label">Telefone para Contato *</label>
+                                <input type="tel" class="form-control" id="Telefone" name="Telefone"
+                                       placeholder="(11) 99999-9999" required>
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="Ativo" name="Ativo" value="true" checked>
+                            <label class="form-check-label" for="Ativo">
+                                Deixar serviço visível para clientes
+                            </label>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <small>
+                                <i class="fas fa-info-circle"></i>
+                                <strong>Dica:</strong> Preencha todas as informações com cuidado.
+                                Serviços bem descritos recebem mais propostas!
+                            </small>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="@Url.Action("OferecerServicos")" class="btn btn-outline-secondary me-md-2">
+                                <i class="fas fa-arrow-left"></i> Voltar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Cadastrar Serviço
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
