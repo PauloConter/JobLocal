@@ -1,8 +1,14 @@
-SENAC EAD
+# SENAC EAD
+## PROJETO INTEGRADOR: ANÁLISE DE SOLUÇÕES INTEGRADAS PARA ORGANIZAÇÕES
 
-PROJETO INTEGRADOR: ANÁLISE DE SOLUÇÕES INTEGRADAS PARA ORGANIZAÇÕES
+### 👥 Integrantes do Projeto
+- **Arthur Ramos Muniz**
+- **Paulo Roberto Conter**
+- **Silmara Bilac Alves Guimaraes**
+- **Viviane Fernandes Campos**
+- **Yasmin Brandao Dos Santos**
 
-Integrantes do Projeto:
+---
 
 Arthur Ramos Muniz
 Paulo Roberto Conter
@@ -14,6 +20,7 @@ Yasmin Brandão Dos Santos
 
 - Objetivo do Projeto:
 
+### 🚀 Objetivo do Projeto
 Democratizar o acesso a oportunidades de trabalho informal, reduzir a informalidade, aumentar a segurança e facilitar a comunicação, contratação e pagamento entre trabalhadores e contratantes.
 
 - Contexto e Motivação:
@@ -86,5 +93,4 @@ deixa também sua avaliação sobre a experiência.
 
 - Conclusão:
 
-O JobLocal moderniza a contratação informal, gera inclusão social, aumenta a segurança e fortalece a economia local.
-Além disso, possui grande potencial de expansão com integrações sociais e ferramentas financeiras.
+**Potencial de Impacto:** Transformação positiva no mercado de trabalho informal através da tecnologia e integração comunitária.
