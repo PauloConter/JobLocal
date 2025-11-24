@@ -6,9 +6,13 @@
 - Membros:
 
 Arthur Ramos Muniz
+
 Paulo Roberto Conter
+
 Silmara Bilac Alves Guimaraes
+
 Viviane Fernandes Campos
+
 Yasmin Brandão Dos Santos
 
 - Objetivo do Projeto:
