@@ -1,94 +1,88 @@
 # SENAC EAD
 ## PROJETO INTEGRADOR: ANÁLISE DE SOLUÇÕES INTEGRADAS PARA ORGANIZAÇÕES
 
-### 👥 Integrantes do Projeto
-- **Arthur Ramos Muniz**
-- **Paulo Roberto Conter**
-- **Silmara Bilac Alves Guimaraes**
-- **Viviane Fernandes Campos**
-- **Yasmin Brandao Dos Santos**
+**JobLocal** – Plataforma para Conectar Trabalhadores Informais e Contratantes Locais
 
----
+- Membros:
 
-## 📍 JobLocal – Plataforma para Conectar Trabalhadores Informais e Contratantes Locais
+Arthur Ramos Muniz
+Paulo Roberto Conter
+Silmara Bilac Alves Guimaraes
+Viviane Fernandes Campos
+Yasmin Brandão Dos Santos
 
-### 🚀 Objetivo do Projeto
+- Objetivo do Projeto:
+
 Democratizar o acesso a oportunidades de trabalho informal, reduzir a informalidade, aumentar a segurança e facilitar a comunicação, contratação e pagamento entre trabalhadores e contratantes.
 
-### 🔍 Contexto e Motivação
-A informalidade no mercado de trabalho cria insegurança e falta de oportunidades. O JobLocal surge para:
-- Aumentar a visibilidade dos trabalhadores informais
-- Oferecer maior segurança nas transações
-- Facilitar a contratação de serviços locais
+- Contexto e Motivação:
 
-### 👥 Público-Alvo
-- **Trabalhadores informais**
-- **Pessoas que precisam contratar serviços residenciais**
-- **Pequenos negócios**
-- **Comunidades locais**
+A informalidade no mercado de trabalho cria insegurança e falta de oportunidades.
+O JobLocal surge para aumentar visibilidade, dar segurança e facilitar a contratação de serviços locais.
 
----
+- Público-Alvo:
 
-## 🛠 Principais Funcionalidades
+Trabalhadores informais;
+Pessoas que precisam contratar serviços residenciais;
+Pequenos negócios;
+Comunidades locais.
 
-- **Cadastro seguro** - Sistema de cadastro verificado e confiável
-- **Filtros inteligentes** - Busca por serviço, localização e avaliação  
-- **Chat integrado** - Comunicação direta entre as partes
-- **Sistema de avaliação** - Feedback sobre serviços prestados
-- **Pagamentos via aplicativo** - Transações seguras e rastreáveis
-- **Sistema de pontos** - Programa de fidelidade e reconhecimento
-- **Notificações** - Alertas e atualizações em tempo real
-- **Relatórios** - Análises e avaliações de desempenho
+- Principais Funcionalidades:
 
----
+Cadastro seguro;
+Filtros por serviço, localização e avaliação;
+Chat integrado;
+Sistema de avaliação;
+Pagamentos via app;
+Sistema de pontos;
+Notificações e relatórios.
 
-## 💡 Diferenciais de Mercado
+- Diferenciais de Mercado:
 
-- ✅ **Foco exclusivo em empregos locais**
-- ✅ **Capacitação profissional integrada**
-- ✅ **Sistema de pontos e recompensas**
-- ✅ **Forte ênfase em segurança e confiabilidade**
+Foco exclusivo em empregos locais;
+Capacitação profissional integrada;
+Sistema de pontos;
+Forte ênfase em segurança.
 
----
+- Stakeholders:
 
-## 🧩 Stakeholders
+**Stakeholders Diretos:**
+Trabalhadores informais;
+Contratantes;
+Equipe de desenvolvimento.
 
-### 🟦 Stakeholders Diretos
-- Trabalhadores informais
-- Contratantes
-- Equipe de desenvolvimento
-- Administradores da plataforma
+**Stakeholders Indiretos:**
+Comunidade local;
+Instituições de capacitação;
+Órgãos reguladores;
+Parceiros comerciais.
 
-### 🟪 Stakeholders Indiretos
-- Comunidade local
-- Instituições de capacitação profissional
-- Órgãos reguladores
-- Parceiros comerciais
-- Instituições financeiras
+- Jornada do Usuário:
 
----
+**João Carlos** – Trabalhador Informal que deseja encontrar serviços temporários para complementar sua renda
 
-## 🗺 Jornadas do Usuário
+**Planejamento:** João decide procurar um serviço de pedreiro para o final 
+de semana, visando complementar a renda do mês.
 
-### Exemplo: Contratação de Diarista (Ana)
+**Acesso ao Aplicativo:** Ele abre o aplicativo de serviços no celular e faz 
+login em sua conta.
 
-1. **Acesso ao App** - Ana acessa a plataforma
-2. **Filtragem** - Busca por diaristas na sua região
-3. **Verificação** - Analisa referências e avaliações
-4. **Comunicação** - Conversa via chat integrado
-5. **Execução** - Serviço é realizado
-6. **Pagamento** - Transação automática e segura
-7. **Avaliação** - Feedback sobre o serviço
+**Busca de Oportunidades:** João utiliza filtros para localizar trabalhos de 
+pedreiro próximos de sua região, definindo um raio de 5 km.
 
----
+**Seleção do Serviço:** Analisa descrições, valores e avaliações dos 
+contratantes. Escolhe um serviço que se encaixa no seu horário e paga um valor 
+justo.
 
-## 📝 Conclusão
+**Confirmação:** Envia mensagem pelo chat interno para confirmar detalhes 
+com o contratante e recebe a confirmação do serviço.
 
-O **JobLocal** representa uma solução inovadora que:
-- Moderniza a contratação informal
-- Promove inclusão social e econômica
-- Aumenta a segurança nas transações
-- Fortalece a economia local
-- Oferece potencial de expansão com integrações sociais e ferramentas financeiras
+**Execução do Trabalho:** No dia marcado, realiza o serviço conforme 
+combinado e o contratante faz a avaliação ao final.
+
+**Pagamento e Feedback:** O pagamento é liberado pela plataforma e João 
+deixa também sua avaliação sobre a experiência.
+
+- Conclusão:
 
 **Potencial de Impacto:** Transformação positiva no mercado de trabalho informal através da tecnologia e integração comunitária.
