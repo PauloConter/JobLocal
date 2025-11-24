@@ -5,98 +5,86 @@ PROJETO INTEGRADOR: ANÁLISE DE SOLUÇÕES INTEGRADAS PARA ORGANIZAÇÕES
 Integrantes do Projeto:
 
 Arthur Ramos Muniz
-
 Paulo Roberto Conter
-
 Silmara Bilac Alves Guimaraes
-
 Viviane Fernandes Campos
+Yasmin Brandão Dos Santos
 
-Yasmin Brandao Dos Santos
+**JobLocal** – Plataforma para Conectar Trabalhadores Informais e Contratantes Locais
 
-📍 JobLocal – Plataforma para Conectar Trabalhadores Informais e Contratantes Locais
-
-🚀 Objetivo do Projeto
+- Objetivo do Projeto:
 
 Democratizar o acesso a oportunidades de trabalho informal, reduzir a informalidade, aumentar a segurança e facilitar a comunicação, contratação e pagamento entre trabalhadores e contratantes.
 
-🔍 Contexto e Motivação
+- Contexto e Motivação:
 
 A informalidade no mercado de trabalho cria insegurança e falta de oportunidades.
 O JobLocal surge para aumentar visibilidade, dar segurança e facilitar a contratação de serviços locais.
 
-👥 Público-Alvo
+- Público-Alvo:
 
-Trabalhadores informais
+Trabalhadores informais;
+Pessoas que precisam contratar serviços residenciais;
+Pequenos negócios;
+Comunidades locais.
 
-Pessoas que precisam contratar serviços residenciais
+- Principais Funcionalidades:
 
-Pequenos negócios
+Cadastro seguro;
+Filtros por serviço, localização e avaliação;
+Chat integrado;
+Sistema de avaliação;
+Pagamentos via app;
+Sistema de pontos;
+Notificações e relatórios.
 
-Comunidades locais
+- Diferenciais de Mercado:
 
-🛠 Principais Funcionalidades
+Foco exclusivo em empregos locais;
+Capacitação profissional integrada;
+Sistema de pontos;
+Forte ênfase em segurança.
 
-Cadastro seguro
+- Stakeholders:
 
-Filtros por serviço, localização e avaliação
+**Stakeholders Diretos:**
+Trabalhadores informais;
+Contratantes;
+Equipe de desenvolvimento.
 
-Chat integrado
+**Stakeholders Indiretos:**
+Comunidade local;
+Instituições de capacitação;
+Órgãos reguladores;
+Parceiros comerciais.
 
-Sistema de avaliação
+- Jornada do Usuário:
 
-Pagamentos via app
+**João Carlos** – Trabalhador Informal que deseja encontrar serviços temporários para complementar sua renda
 
-Sistema de pontos
+**Planejamento:** João decide procurar um serviço de pedreiro para o final 
+de semana, visando complementar a renda do mês.
 
-Notificações e relatórios
+**Acesso ao Aplicativo:** Ele abre o aplicativo de serviços no celular e faz 
+login em sua conta.
 
-💡 Diferenciais de Mercado
+**Busca de Oportunidades:** João utiliza filtros para localizar trabalhos de 
+pedreiro próximos de sua região, definindo um raio de 5 km.
 
-Foco exclusivo em empregos locais
+**Seleção do Serviço:** Analisa descrições, valores e avaliações dos 
+contratantes. Escolhe um serviço que se encaixa no seu horário e paga um valor 
+justo.
 
-Capacitação profissional integrada
+**Confirmação:** Envia mensagem pelo chat interno para confirmar detalhes 
+com o contratante e recebe a confirmação do serviço.
 
-Sistema de pontos
+**Execução do Trabalho:** No dia marcado, realiza o serviço conforme 
+combinado e o contratante faz a avaliação ao final.
 
-Forte ênfase em segurança
+**Pagamento e Feedback:** O pagamento é liberado pela plataforma e João 
+deixa também sua avaliação sobre a experiência.
 
-🧩 Stakeholders
-🟦 Stakeholders Diretos
-
-Trabalhadores informais
-
-Contratantes
-
-Equipe de desenvolvimento
-
-🟪 Stakeholders Indiretos
-
-Comunidade local
-
-Instituições de capacitação
-
-Órgãos reguladores
-
-Parceiros comerciais
-
-🗺 Jornadas do Usuário
-
-Exemplo: Contratação de diarista (Ana)
-
-Acessa o app
-
-Filtra diaristas
-
-Verifica referências
-
-Conversa via chat
-
-Serviço é realizado
-
-Pagamento automático
-
-📝 Conclusão
+- Conclusão:
 
 O JobLocal moderniza a contratação informal, gera inclusão social, aumenta a segurança e fortalece a economia local.
 Além disso, possui grande potencial de expansão com integrações sociais e ferramentas financeiras.
