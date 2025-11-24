@@ -2,11 +2,16 @@ SENAC EAD
 
 PROJETO INTEGRADOR: ANÁLISE DE SOLUÇÕES INTEGRADAS PARA ORGANIZAÇÕES
 
-Integrantes do Projeto
+Integrantes do Projeto:
+
 Arthur Ramos Muniz
+
 Paulo Roberto Conter
+
 Silmara Bilac Alves Guimaraes
+
 Viviane Fernandes Campos
+
 Yasmin Brandao Dos Santos
 
 📍 JobLocal – Plataforma para Conectar Trabalhadores Informais e Contratantes Locais
