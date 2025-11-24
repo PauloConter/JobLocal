@@ -19,6 +19,10 @@ Yasmin Brandão Dos Santos
 
 Democratizar o acesso a oportunidades de trabalho informal, reduzir a informalidade, aumentar a segurança e facilitar a comunicação, contratação e pagamento entre trabalhadores e contratantes.
 
+- Vídeo demonstrativo do MVP funcional:
+
+https://youtu.be/8PN8eMVMW2U?si=b8yoSrF0_jZenUOr
+
 - Contexto e Motivação:
 
 A informalidade no mercado de trabalho cria insegurança e falta de oportunidades.
